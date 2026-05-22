@@ -182,25 +182,29 @@ export function ParticleHero({
           }}
         />
 
-        {/* Main cone spotlight — soft radial cone, no hard edges */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "100vw",
-            height: "96vh",
-            background: `radial-gradient(ellipse 46vw 92vh at 50% 0%,
-              rgba(255,255,255,0.32) 0%,
-              rgba(${beamR},0.22)    8%,
-              rgba(${beamR},0.12)   28%,
-              rgba(${beamR},0.05)   55%,
-              transparent           75%
-            )`,
-            animation: "ph-fadein 1s 0.3s ease both",
-          }}
-        />
+        {/* Main cone spotlight — triangle with soft edges */}
+        <div style={{ position: "absolute", inset: 0, filter: "blur(8px)" }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "820px",
+              height: "96vh",
+              background: `linear-gradient(
+                180deg,
+                rgba(255,255,255,0.42) 0%,
+                rgba(${beamR},0.26)    6%,
+                rgba(${beamR},0.12)   30%,
+                rgba(${beamR},0.04)   65%,
+                transparent           100%
+              )`,
+              clipPath: "polygon(50% 0%, 3% 100%, 97% 100%)",
+              animation: "ph-fadein 1s 0.3s ease both",
+            }}
+          />
+        </div>
 
         {/* Left ambient fill beam */}
         <div
