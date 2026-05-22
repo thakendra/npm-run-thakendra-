@@ -182,7 +182,7 @@ export function ParticleHero({
           }}
         />
 
-        {/* Main cone spotlight — sharp triangle pointing down */}
+        {/* Main cone spotlight — soft, no hard edges */}
         <div
           style={{
             position: "absolute",
@@ -199,7 +199,11 @@ export function ParticleHero({
               rgba(${beamR},0.04)   65%,
               transparent           100%
             )`,
-            clipPath: "polygon(50% 0%, 3% 100%, 97% 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%), linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
+            WebkitMaskComposite: "source-in",
+            maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%), linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
+            maskComposite: "intersect",
+            filter: "blur(18px)",
             animation: "ph-fadein 1s 0.3s ease both",
           }}
         />
@@ -367,9 +371,11 @@ export function ParticleHero({
               objectPosition: "center bottom",
               mixBlendMode: "screen",
               WebkitMaskImage:
-                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+              WebkitMaskComposite: "source-in",
               maskImage:
-                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%), linear-gradient(to bottom, black 0%, black 70%, transparent 100%)",
+              maskComposite: "intersect",
             }}
           />
           {/* Beam colour tint */}
