@@ -182,28 +182,22 @@ export function ParticleHero({
           }}
         />
 
-        {/* Main cone spotlight — soft, no hard edges */}
+        {/* Main cone spotlight — soft radial cone, no hard edges */}
         <div
           style={{
             position: "absolute",
             top: 0,
             left: "50%",
             transform: "translateX(-50%)",
-            width: "820px",
+            width: "100vw",
             height: "96vh",
-            background: `linear-gradient(
-              180deg,
-              rgba(255,255,255,0.42) 0%,
-              rgba(${beamR},0.26)    6%,
-              rgba(${beamR},0.12)   30%,
-              rgba(${beamR},0.04)   65%,
-              transparent           100%
+            background: `radial-gradient(ellipse 46vw 92vh at 50% 0%,
+              rgba(255,255,255,0.32) 0%,
+              rgba(${beamR},0.22)    8%,
+              rgba(${beamR},0.12)   28%,
+              rgba(${beamR},0.05)   55%,
+              transparent           75%
             )`,
-            WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%), linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
-            WebkitMaskComposite: "source-in",
-            maskImage: "linear-gradient(to bottom, black 0%, black 60%, transparent 100%), linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%)",
-            maskComposite: "intersect",
-            filter: "blur(18px)",
             animation: "ph-fadein 1s 0.3s ease both",
           }}
         />
