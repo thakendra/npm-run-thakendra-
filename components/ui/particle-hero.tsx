@@ -409,6 +409,7 @@ export function ParticleHero({
             zIndex: 5,
             pointerEvents: "none",
             animation: "ph-scalein 1s 0.5s ease both",
+            isolation: "isolate",   // photo blends within its own group → no beam colour tint
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
