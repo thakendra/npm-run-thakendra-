@@ -68,6 +68,12 @@ export function ParticleHero({
   const { accent, grad, beamR } = COLORS[colorIdx];
   const nextColor = () => setColorIdx((i) => (i + 1) % COLORS.length);
 
+  // Auto-cycle colour every 60 seconds
+  useEffect(() => {
+    const id = setInterval(nextColor, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
   // Particle + connection-line animation — restarts when colour changes
   useEffect(() => {
     const canvas = canvasRef.current;
