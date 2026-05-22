@@ -346,7 +346,7 @@ export function ParticleHero({
         </div>
 
         {/* ── 2. Photo — fills remaining space, centered ──────────── */}
-        <div style={{
+        <div className="ph-photo-flex" style={{
           flex: "1 1 0",
           minHeight: 0,
           display: "flex",
@@ -470,7 +470,21 @@ export function ParticleHero({
           0%   { transform: rotate(16deg)  translateX(10%); opacity: 0.7 }
           100% { transform: rotate(-12deg) translateX(-8%); opacity: 1   }
         }
+        @media (max-width: 768px) {
+          .ph-photo-flex {
+            flex: 0 0 auto !important;
+            height: 54vh;
+            align-items: flex-start !important;
+            margin-top: 0.5rem;
+          }
+        }
         @media (max-width: 480px) {
+          .ph-photo-flex {
+            flex: 0 0 auto !important;
+            height: 52vh;
+            align-items: flex-start !important;
+            margin-top: 0.5rem;
+          }
           .ph-pills {
             display: grid !important;
             grid-template-columns: 1fr 1fr;
