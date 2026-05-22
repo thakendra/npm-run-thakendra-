@@ -70,7 +70,7 @@ export function ParticleHero({
 
   // Auto-cycle colour every 60 seconds
   useEffect(() => {
-    const id = setInterval(nextColor, 2_500);
+    const id = setInterval(nextColor, 15_000);
     return () => clearInterval(id);
   }, []);
 
