@@ -142,12 +142,12 @@ export function ParticleHero({
       style={{
         background: "#05060f",
         position: "relative",
-        minHeight: "100vh",
+        height: "100vh",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       {/* ── Particle canvas ─────────────────────────────────────────── */}
@@ -261,78 +261,139 @@ export function ParticleHero({
         }}
       />
 
-      {/* ── Main content ────────────────────────────────────────────── */}
+      {/* ══ Full-height flex column — text → photo → pills ══════════ */}
       <div
         style={{
           position: "relative",
           zIndex: 10,
-          textAlign: "center",
-          padding: "2rem 1.5rem",
-          maxWidth: "800px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           width: "100%",
+          height: "100vh",
+          paddingTop: "clamp(3rem, 6vh, 5rem)",
         }}
       >
-        {/* Name — animated gradient shimmer */}
-        <h1
-          style={{
-            fontSize: "clamp(2.2rem, 5vw, 4rem)",
+        {/* ── 1. Text block (top) ─────────────────────────────────── */}
+        <div style={{ textAlign: "center", width: "100%", maxWidth: "900px", padding: "0 1.5rem", flexShrink: 0 }}>
+
+          {/* Hello, I'm */}
+          <p style={{
+            fontSize: "clamp(0.85rem, 1.6vw, 1.05rem)",
+            color: "rgba(175,200,230,0.6)",
+            fontStyle: "italic",
+            letterSpacing: "0.08em",
+            margin: "0 0 0.25rem",
+            animation: "ph-slideup 0.6s 0.6s ease both",
+          }}>
+            Hello, I&apos;m
+          </p>
+
+          {/* Name */}
+          <h1 style={{
+            fontSize: "clamp(2.6rem, 6vw, 5rem)",
             fontWeight: 800,
             letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-            margin: "0 0 0.6rem",
+            lineHeight: 1.05,
+            margin: "0 0 0.4rem",
             backgroundImage: `linear-gradient(90deg,${grad})`,
             backgroundSize: "200% auto",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
-            animation:
-              "ph-slideup 0.7s 1s ease both, ph-gradmove 4s linear infinite",
-          }}
-        >
-          {name}
-        </h1>
+            animation: "ph-slideup 0.7s 0.8s ease both, ph-gradmove 4s linear infinite",
+          }}>
+            {name}
+          </h1>
 
-        {/* Title */}
-        <p
-          style={{
-            fontSize: "clamp(0.9rem, 2vw, 1.15rem)",
+          {/* Title */}
+          <p style={{
+            fontSize: "clamp(0.9rem, 1.8vw, 1.15rem)",
             fontWeight: 500,
             color: accent,
-            margin: "0 0 0.7rem",
+            margin: "0 0 0.4rem",
             letterSpacing: "0.04em",
             textShadow: `0 0 20px ${accent}88`,
-            animation: "ph-slideup 0.7s 1.4s ease both",
+            animation: "ph-slideup 0.7s 1.1s ease both",
             transition: "color 0.5s, text-shadow 0.5s",
-          }}
-        >
-          {title}
-        </p>
+          }}>
+            {title}
+          </p>
 
-        {/* Tagline */}
-        <p
-          style={{
-            fontSize: "clamp(0.82rem, 1.5vw, 0.97rem)",
+          {/* Tagline — "Artificial Intelligence" highlighted */}
+          <p style={{
+            fontSize: "clamp(0.82rem, 1.4vw, 0.97rem)",
             color: "rgba(175,200,230,0.65)",
-            margin: "0 0 2.2rem",
-            maxWidth: "480px",
-            marginInline: "auto",
-            lineHeight: 1.65,
-            animation: "ph-slideup 0.7s 1.8s ease both",
-          }}
-        >
-          {tagline}
-        </p>
+            margin: 0,
+            lineHeight: 1.6,
+            animation: "ph-slideup 0.7s 1.4s ease both",
+          }}>
+            {(() => {
+              const hi = "Artificial Intelligence";
+              const idx = tagline.indexOf(hi);
+              if (idx === -1) return tagline;
+              return (
+                <>
+                  {tagline.slice(0, idx)}
+                  <span style={{ color: accent, transition: "color 0.5s" }}>{hi}</span>
+                  {tagline.slice(idx + hi.length)}
+                </>
+              );
+            })()}
+          </p>
+        </div>
 
-        {/* Service pills */}
+        {/* ── 2. Photo — fills remaining space, centered ──────────── */}
+        <div style={{
+          flex: "1 1 0",
+          minHeight: 0,
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          width: "100%",
+          overflow: "hidden",
+          pointerEvents: "none",
+          animation: "ph-scalein 1s 0.4s ease both",
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/myphoto.png"
+            alt="Thakendra Khadka"
+            style={{
+              height: "100%",
+              width: "auto",
+              maxWidth: "clamp(320px, 52vw, 680px)",
+              objectFit: "contain",
+              objectPosition: "center bottom",
+              mixBlendMode: "screen",
+              // only left/right soft fade — no top fade so head is fully visible
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+            }}
+          />
+          {/* Beam colour tint */}
+          <div style={{
+            position: "absolute", inset: 0, pointerEvents: "none",
+            background: `radial-gradient(ellipse at 50% 30%, rgba(${beamR},0.12) 0%, transparent 60%)`,
+            transition: "background 0.6s ease",
+            mixBlendMode: "screen",
+          }} />
+        </div>
+
+        {/* ── 3. Service pills (bottom) ────────────────────────────── */}
         <div
           className="ph-pills"
           style={{
+            flexShrink: 0,
             display: "flex",
             flexWrap: "wrap",
-            gap: "0.6rem",
+            gap: "0.55rem",
             justifyContent: "center",
-            maxWidth: "600px",
-            margin: "0 auto",
+            maxWidth: "700px",
+            width: "100%",
+            padding: "0.75rem 1.5rem 1.2rem",
           }}
         >
           {services.map((svc, i) => (
@@ -343,17 +404,17 @@ export function ParticleHero({
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "0.4rem 1rem",
+                padding: "0.35rem 1rem",
                 borderRadius: "9999px",
                 border: `1px solid ${accent}44`,
                 background: `rgba(${beamR},0.07)`,
                 color: accent,
-                fontSize: "clamp(0.72rem, 1.4vw, 0.85rem)",
+                fontSize: "clamp(0.7rem, 1.3vw, 0.82rem)",
                 fontWeight: 500,
                 letterSpacing: "0.03em",
                 cursor: "default",
                 transition: "box-shadow 0.25s, background 0.25s, color 0.5s, border-color 0.5s",
-                animation: `ph-slidein 0.5s ${(2 + i * 0.12).toFixed(2)}s ease both`,
+                animation: `ph-slidein 0.5s ${(1.8 + i * 0.1).toFixed(2)}s ease both`,
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
