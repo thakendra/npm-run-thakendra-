@@ -167,11 +167,7 @@ export function ParticleHero({
         aria-hidden="true"
         style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1 }}
       >
-<<<<<<< HEAD
         {/* Soft radial halo — blooms outward from the sun */}
-=======
-        {/* Soft radial halo */}
->>>>>>> 18063b212156276c405328699f1054a87689ba13
         <div
           style={{
             position: "absolute",
@@ -186,35 +182,21 @@ export function ParticleHero({
           }}
         />
 
-<<<<<<< HEAD
         {/* Main cone spotlight — sharp triangle pointing down */}
-=======
-        {/* Main cone spotlight */}
->>>>>>> 18063b212156276c405328699f1054a87689ba13
         <div
           style={{
             position: "absolute",
             top: 0,
             left: "50%",
             transform: "translateX(-50%)",
-<<<<<<< HEAD
             width: "820px",
-=======
-            width: "1350px",
->>>>>>> 18063b212156276c405328699f1054a87689ba13
             height: "96vh",
             background: `linear-gradient(
               180deg,
               rgba(255,255,255,0.42) 0%,
-<<<<<<< HEAD
               rgba(${beamR},0.26)    6%,
               rgba(${beamR},0.12)   30%,
               rgba(${beamR},0.04)   65%,
-=======
-              rgba(${beamR},0.28)    6%,
-              rgba(${beamR},0.14)   30%,
-              rgba(${beamR},0.05)   65%,
->>>>>>> 18063b212156276c405328699f1054a87689ba13
               transparent           100%
             )`,
             clipPath: "polygon(50% 0%, 3% 100%, 97% 100%)",
@@ -262,11 +244,7 @@ export function ParticleHero({
         aria-label="Cycle light colour"
         style={{
           position: "absolute",
-<<<<<<< HEAD
           top: "-13px",          // half-clipped by viewport top edge, like the reference
-=======
-          top: "10px",           // fully visible, not clipped
->>>>>>> 18063b212156276c405328699f1054a87689ba13
           left: "50%",
           transform: "translateX(-50%)",
           width: "34px",
@@ -365,7 +343,6 @@ export function ParticleHero({
           </p>
         </div>
 
-<<<<<<< HEAD
         {/* ── 2. Photo — fills remaining space, centered ──────────── */}
         <div style={{
           flex: "1 1 0",
@@ -389,7 +366,6 @@ export function ParticleHero({
               objectFit: "contain",
               objectPosition: "center bottom",
               mixBlendMode: "screen",
-              // only left/right soft fade — no top fade so head is fully visible
               WebkitMaskImage:
                 "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
               maskImage:
@@ -404,13 +380,6 @@ export function ParticleHero({
             mixBlendMode: "screen",
           }} />
         </div>
-=======
-        {/* ── 2. Flex spacer — pushes pills to the bottom ─────────── */}
-        <div style={{ flex: 1 }} />
-
-        {/* ── Photo — absolute so it has NO hard top edge at all ───── */}
-        {/* Starts deep inside the text area so the boundary is invisible */}
->>>>>>> 18063b212156276c405328699f1054a87689ba13
 
         {/* ── 3. Service pills (bottom) ────────────────────────────── */}
         <div
@@ -461,47 +430,6 @@ export function ParticleHero({
             </span>
           ))}
         </div>
-<<<<<<< HEAD
-=======
-
-        {/* ── Photo — absolutely inside wrapper, no hard flex edge ─── */}
-        {/* top/bottom/width live in .ph-photo-wrapper CSS (responsive) */}
-        <div
-          className="ph-photo-wrapper"
-          style={{
-            position: "absolute",
-            left: "50%",
-            zIndex: 5,
-            pointerEvents: "none",
-            animation: "ph-scalein 1s 0.5s ease both",
-            isolation: "isolate",   // photo blends within its own group → no beam colour tint
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/myphoto.png"
-            alt="Thakendra Khadka"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              objectPosition: "center 8%",
-              mixBlendMode: "screen",
-              // extra midpoint makes the top fade much more gradual — kills the sharp edge
-              WebkitMaskImage: [
-                "linear-gradient(to right,  transparent 0%, black 8%, black 92%, transparent 100%)",
-                "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 22%, black 42%, black 60%, transparent 96%)",
-              ].join(", "),
-              WebkitMaskComposite: "source-in",
-              maskImage: [
-                "linear-gradient(to right,  transparent 0%, black 8%, black 92%, transparent 100%)",
-                "linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 22%, black 42%, black 60%, transparent 96%)",
-              ].join(", "),
-              maskComposite: "intersect",
-            }}
-          />
-        </div>
->>>>>>> 18063b212156276c405328699f1054a87689ba13
       </div>
 
       {/* ── Keyframes + responsive overrides ───────────────────────── */}
@@ -511,13 +439,8 @@ export function ParticleHero({
           to   { opacity: 1 }
         }
         @keyframes ph-scalein {
-<<<<<<< HEAD
           from { opacity: 0; transform: scale(0.72) }
           to   { opacity: 1; transform: scale(1)    }
-=======
-          from { opacity: 0; transform: translateX(-50%) scale(0.72) }
-          to   { opacity: 1; transform: translateX(-50%) scale(1)    }
->>>>>>> 18063b212156276c405328699f1054a87689ba13
         }
         @keyframes ph-slideup {
           from { opacity: 0; transform: translateY(20px) }
@@ -543,29 +466,7 @@ export function ParticleHero({
           0%   { transform: rotate(16deg)  translateX(10%); opacity: 0.7 }
           100% { transform: rotate(-12deg) translateX(-8%); opacity: 1   }
         }
-<<<<<<< HEAD
         @media (max-width: 480px) {
-=======
-        /* Photo wrapper — responsive sizing so photo fills beam on every screen */
-        .ph-photo-wrapper {
-          top: 26vh;
-          bottom: 58px;
-          width: clamp(300px, 50vw, 660px);
-        }
-        @media (max-width: 768px) {
-          .ph-photo-wrapper {
-            top: 27vh;
-            bottom: 52px;
-            width: min(86vw, 480px);
-          }
-        }
-        @media (max-width: 480px) {
-          .ph-photo-wrapper {
-            top: 27vh;
-            bottom: 48px;
-            width: min(92vw, 380px);
-          }
->>>>>>> 18063b212156276c405328699f1054a87689ba13
           .ph-pills {
             display: grid !important;
             grid-template-columns: 1fr 1fr;
